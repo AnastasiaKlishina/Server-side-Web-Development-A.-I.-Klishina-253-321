@@ -1,8 +1,7 @@
-CREATE DATABASE IF NOT EXISTS contact_book
-  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE contact_book;
+-- Импортировать, предварительно выбрав базу miavertiko в phpMyAdmin.
+-- Отдельное имя таблицы не конфликтует с таблицами старого сайта.
 
-CREATE TABLE IF NOT EXISTS contacts (
+CREATE TABLE IF NOT EXISTS lab_notebook_contacts (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   surname VARCHAR(100) NOT NULL,
   name VARCHAR(100) NOT NULL,
@@ -14,4 +13,4 @@ CREATE TABLE IF NOT EXISTS contacts (
   email VARCHAR(150) DEFAULT '',
   comment TEXT,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

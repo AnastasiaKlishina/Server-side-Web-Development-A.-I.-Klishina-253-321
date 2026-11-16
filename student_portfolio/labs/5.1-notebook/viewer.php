@@ -17,13 +17,13 @@ function render_contacts(string $sort, int $page): string {
     }
 
     $perPage = 10;
-    $total = (int)$pdo->query('SELECT COUNT(*) FROM contacts')->fetchColumn();
+    $total = (int)$pdo->query('SELECT COUNT(*) FROM lab_notebook_contacts')->fetchColumn();
     $pages = max(1, (int)ceil($total / $perPage));
     $page = min(max(1, $page), $pages);
     $offset = ($page - 1) * $perPage;
 
     $statement = $pdo->query(
-        'SELECT * FROM contacts ORDER BY ' . $sortColumns[$sort] .
+        'SELECT * FROM lab_notebook_contacts ORDER BY ' . $sortColumns[$sort] .
         ' LIMIT ' . $perPage . ' OFFSET ' . $offset
     );
     $rows = $statement->fetchAll();

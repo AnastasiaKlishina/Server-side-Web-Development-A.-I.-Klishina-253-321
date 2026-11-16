@@ -17,7 +17,7 @@ $result = ($headers === false)
         </a>
         <div class="work">Лабораторная работа<br>«Feedback form»</div></header>
 <main>
-    <a class="back-home" href="/student_portfolio/">← К списку лабораторных</a>
+    <a class="back-home" href="/">← К списку лабораторных</a>
     <section class="panel">
         <p class="eyebrow">РЕЗУЛЬТАТ ВЫПОЛНЕНИЯ</p>
     <h1>Функция get_headers()</h1>

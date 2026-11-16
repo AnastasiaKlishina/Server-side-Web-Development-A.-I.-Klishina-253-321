@@ -1,11 +1,11 @@
 <?php
 if (!defined('CONTACT_BOOK')) { http_response_code(403); exit('Доступ запрещён'); }
-$contacts = $pdo->query('SELECT id,surname,name,patronymic FROM contacts ORDER BY surname,name,patronymic')->fetchAll();
+$lab_notebook_contacts = $pdo->query('SELECT id,surname,name,patronymic FROM lab_notebook_contacts ORDER BY surname,name,patronymic')->fetchAll();
 $selectedId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-if (!$selectedId && $contacts) { $selectedId = (int)$contacts[0]['id']; }
+if (!$selectedId && $lab_notebook_contacts) { $selectedId = (int)$lab_notebook_contacts[0]['id']; }
 $data = [];
 if ($selectedId) {
-    $stmt = $pdo->prepare('SELECT * FROM contacts WHERE id = ?');
+    $stmt = $pdo->prepare('SELECT * FROM lab_notebook_contacts WHERE id = ?');
     $stmt->execute([$selectedId]);
     $data = $stmt->fetch() ?: [];
 }
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'edit'
     } else {
         $selectedId = (int)($_POST['id'] ?? 0);
         try {
-            $stmt = $pdo->prepare('UPDATE contacts SET surname=:surname,name=:name,patronymic=:patronymic,gender=:gender,birth_date=:birth_date,phone=:phone,address=:address,email=:email,comment=:comment WHERE id=:id');
+            $stmt = $pdo->prepare('UPDATE lab_notebook_contacts SET surname=:surname,name=:name,patronymic=:patronymic,gender=:gender,birth_date=:birth_date,phone=:phone,address=:address,email=:email,comment=:comment WHERE id=:id');
             $stmt->execute([
                 ':surname'=>trim($_POST['surname']??''), ':name'=>trim($_POST['name']??''),
                 ':patronymic'=>trim($_POST['patronymic']??''), ':gender'=>$_POST['gender']??'',
@@ -27,14 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'edit'
             ]);
             $message = 'Запись обновлена'; $messageClass = 'success';
         } catch (Throwable $e) { $message = 'Ошибка: запись не изменена'; $messageClass = 'error'; }
-        $stmt = $pdo->prepare('SELECT * FROM contacts WHERE id=?'); $stmt->execute([$selectedId]); $data = $stmt->fetch() ?: [];
-        $contacts = $pdo->query('SELECT id,surname,name,patronymic FROM contacts ORDER BY surname,name,patronymic')->fetchAll();
+        $stmt = $pdo->prepare('SELECT * FROM lab_notebook_contacts WHERE id=?'); $stmt->execute([$selectedId]); $data = $stmt->fetch() ?: [];
+        $lab_notebook_contacts = $pdo->query('SELECT id,surname,name,patronymic FROM lab_notebook_contacts ORDER BY surname,name,patronymic')->fetchAll();
     }
 }
 ?>
 <section class="card"><p class="eyebrow">УПРАВЛЕНИЕ КОНТАКТАМИ</p><h2>Редактирование записи</h2>
-<?php if (!$contacts): ?><p class="empty">Нет контактов для редактирования. Сначала добавьте запись.</p><?php else: ?>
-<div class="record-list"><?php foreach ($contacts as $contact): $label = trim($contact['surname'].' '.$contact['name'].' '.$contact['patronymic']); ?>
+<?php if (!$lab_notebook_contacts): ?><p class="empty">Нет контактов для редактирования. Сначала добавьте запись.</p><?php else: ?>
+<div class="record-list"><?php foreach ($lab_notebook_contacts as $contact): $label = trim($contact['surname'].' '.$contact['name'].' '.$contact['patronymic']); ?>
 <a class="<?= ((int)$selectedId === (int)$contact['id']) ? 'record selected' : 'record' ?>" href="index.php?page=edit&amp;id=<?= (int)$contact['id'] ?>"><?= e($label) ?></a>
 <?php endforeach; ?></div>
 <?php if ($message): ?><p class="notice <?= $messageClass ?>"><?= e($message) ?></p><?php endif; ?>

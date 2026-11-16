@@ -18,10 +18,10 @@ $content = $content ?? '';
 </head>
 <body>
 <main>
-    <a class="back-home" href="/student_portfolio/">← К списку лабораторных</a>
+    <a class="back-home" href="/">← К списку лабораторных</a>
     <h1><?= htmlspecialchars($title, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></h1>
     <p><?= htmlspecialchars($content, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p>
-    <p><a href="/student_portfolio/labs/2.1-2.2-controller/public/">Вернуться к заданию</a></p>
+    <p><a href="/labs/2.1-2.2-controller/public/">Вернуться к заданию</a></p>
 </main>
 </body>
 </html>

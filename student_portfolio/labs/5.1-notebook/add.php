@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add')
         $messageClass = 'error';
     } else {
         try {
-            $sql = 'INSERT INTO contacts (surname,name,patronymic,gender,birth_date,phone,address,email,comment) VALUES (:surname,:name,:patronymic,:gender,:birth_date,:phone,:address,:email,:comment)';
+            $sql = 'INSERT INTO lab_notebook_contacts (surname,name,patronymic,gender,birth_date,phone,address,email,comment) VALUES (:surname,:name,:patronymic,:gender,:birth_date,:phone,:address,:email,:comment)';
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
                 ':surname' => trim($_POST['surname'] ?? ''),

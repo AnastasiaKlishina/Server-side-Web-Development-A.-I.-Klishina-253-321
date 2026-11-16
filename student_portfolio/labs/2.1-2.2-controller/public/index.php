@@ -4,7 +4,7 @@ require_once __DIR__ . '/../app/Controllers/GreetingController.php';
 use App\Controllers\GreetingController;
 
 $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
-$basePath = '/student_portfolio/labs/2.1-2.2-controller/public';
+$basePath = '/labs/2.1-2.2-controller/public';
 if (str_starts_with($path, $basePath)) {
     $path = substr($path, strlen($basePath));
 }

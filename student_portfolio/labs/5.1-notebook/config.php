@@ -6,12 +6,12 @@ if (!defined('CONTACT_BOOK')) {
 
 /*
  * Укажите параметры MySQL вашего хостинга.
- * Создайте базу данных и импортируйте schema.sql.
+ * Выберите базу miavertiko и импортируйте schema.sql.
  */
 $dbHost = 'localhost';
-$dbName = 'contact_book';
-$dbUser = 'root';
-$dbPass = '';
+$dbName = 'miavertiko';
+$dbUser = 'miavertiko';
+$dbPass = 'MAiXGV8NB1*3HB31';
 
 try {
     $pdo = new PDO(

@@ -20,5 +20,5 @@ try {
 } catch (PDOException $e) {
     http_response_code(500);
     echo '<h1>Не удалось подключиться к базе данных</h1>';
-    echo '<p>Создайте базу student_blog и импортируйте database.sql из папки проекта.</p>';
+    echo '<p>Выберите базу miavertiko и импортируйте database.sql из папки проекта.</p>';
 }

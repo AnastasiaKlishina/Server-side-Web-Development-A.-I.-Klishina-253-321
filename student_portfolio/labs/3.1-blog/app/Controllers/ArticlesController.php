@@ -7,7 +7,7 @@ final class ArticlesController
 
     public function index(): void
     {
-        $stmt = $this->pdo->query('SELECT id, title FROM articles ORDER BY id');
+        $stmt = $this->pdo->query('SELECT id, title FROM lab_blog_articles ORDER BY id');
         $articles = $stmt->fetchAll();
         require __DIR__ . '/../../views/index.php';
     }
@@ -16,7 +16,7 @@ final class ArticlesController
     {
         // Первый запрос: получаем статью.
         $articleQuery = $this->pdo->prepare(
-            'SELECT id, title, content, user_id FROM articles WHERE id = :id'
+            'SELECT id, title, content, user_id FROM lab_blog_articles WHERE id = :id'
         );
         $articleQuery->execute([':id' => $id]);
         $article = $articleQuery->fetch();
@@ -30,7 +30,7 @@ final class ArticlesController
 
         // Второй запрос: получаем автора этой статьи из таблицы users.
         $authorQuery = $this->pdo->prepare(
-            'SELECT nickname FROM users WHERE id = :user_id'
+            'SELECT nickname FROM lab_blog_users WHERE id = :user_id'
         );
         $authorQuery->execute([':user_id' => $article['user_id']]);
         $author = $authorQuery->fetch();
