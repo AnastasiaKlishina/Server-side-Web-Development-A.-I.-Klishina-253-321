@@ -40,6 +40,7 @@ $csrf = $_SESSION['csrf'] ??= bin2hex(random_bytes(32));
 </header>
 <nav class="nav"><?= get_menu() ?></nav>
 <main class="container">
+  <a class="back-home" href="/student_portfolio/">← К списку лабораторных</a>
 <?php
 switch ($page) {
     case 'add':

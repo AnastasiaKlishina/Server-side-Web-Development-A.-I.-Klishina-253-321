@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /student_portfolio/labs/2.1-2.2-controller/public/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L,QSA]

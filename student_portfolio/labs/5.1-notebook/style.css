@@ -53,3 +53,5 @@ tbody tr:nth-child(even) { background: #f8faff; }
 .count, .muted { color: var(--muted); font-size: 14px; }
 footer { margin-top: auto; padding: 17px 20px; background: var(--navy); color: #fff; text-align: center; font-size: 14px; }
 @media (max-width: 720px) { .top { align-items: flex-start; flex-direction: column; } .container { width: calc(100% - 24px); margin: 18px auto; } .card { padding: 18px; } .contact-form { grid-template-columns: 1fr; } .contact-form label:nth-of-type(9) { grid-column: auto; } .nav { padding-inline: 12px; } }
+
+.back-home{display:inline-flex;align-items:center;gap:6px;margin:16px 0 20px;padding:9px 13px;border:1px solid #cbd7e5;border-radius:7px;background:#f7faff;color:#245b96;text-decoration:none;font-size:14px;font-weight:700}.back-home:hover{background:#eaf1fa;text-decoration:none}

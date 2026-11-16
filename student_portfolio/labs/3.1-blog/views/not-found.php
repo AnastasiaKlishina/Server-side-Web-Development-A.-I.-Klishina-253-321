@@ -1,0 +1,1 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><title><?= htmlspecialchars($title) ?></title></head><body><main class="panel"><a class="back-home" href="/student_portfolio/">← К списку лабораторных</a><h1><?= htmlspecialchars($title) ?></h1><p><a href="index.php">Вернуться к статьям</a></p></main></body></html>
