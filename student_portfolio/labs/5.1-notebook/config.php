@@ -4,10 +4,7 @@ if (!defined('CONTACT_BOOK')) {
     exit('Доступ запрещён');
 }
 
-/*
- * Укажите параметры MySQL вашего хостинга.
- * Выберите базу miavertiko и импортируйте schema.sql.
- */
+
 $dbHost = 'localhost';
 $dbName = 'miavertiko';
 $dbUser = 'miavertiko';

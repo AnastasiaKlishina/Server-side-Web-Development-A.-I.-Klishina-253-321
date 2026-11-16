@@ -1,5 +1,4 @@
--- Импортировать, предварительно выбрав базу miavertiko в phpMyAdmin.
--- Таблицы имеют отдельный префикс и не затрагивают старые email/orders/products/users.
+
 
 CREATE TABLE IF NOT EXISTS lab_blog_users (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

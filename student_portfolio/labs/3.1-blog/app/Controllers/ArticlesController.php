@@ -14,7 +14,7 @@ final class ArticlesController
 
     public function show(int $id): void
     {
-        // Первый запрос: получаем статью.
+        
         $articleQuery = $this->pdo->prepare(
             'SELECT id, title, content, user_id FROM lab_blog_articles WHERE id = :id'
         );
@@ -28,7 +28,7 @@ final class ArticlesController
             return;
         }
 
-        // Второй запрос: получаем автора этой статьи из таблицы users.
+        
         $authorQuery = $this->pdo->prepare(
             'SELECT nickname FROM lab_blog_users WHERE id = :user_id'
         );

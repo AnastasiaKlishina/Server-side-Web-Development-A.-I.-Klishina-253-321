@@ -1,6 +1,5 @@
 <?php
-// Общий шаблон формы добавления и редактирования контакта.
-// Переменные: $data, $csrf, $action, $buttonLabel, $formPage.
+
 ?>
 <form method="post" action="index.php?page=<?= e($formPage) ?>" class="contact-form" name="form_add">
     <input type="hidden" name="action" value="<?= e($action) ?>">

@@ -1,5 +1,4 @@
--- Импортировать, предварительно выбрав базу miavertiko в phpMyAdmin.
--- Отдельное имя таблицы не конфликтует с таблицами старого сайта.
+
 
 CREATE TABLE IF NOT EXISTS lab_notebook_contacts (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
