@@ -1,9 +1,136 @@
-<div class="stats-grid compact-stats"><article class="stat-card stat-purple"><div class="stat-top"><span>Средний балл</span><span class="stat-icon">★</span></div><div class="stat-value"><?= e($summary['average'] ?? '0') ?></div><div class="stat-foot">Среднее по всем оценкам</div></article><article class="stat-card stat-green"><div class="stat-top"><span>Всего оценок</span><span class="stat-icon">▤</span></div><div class="stat-value"><?= (int)($summary['total'] ?? 0) ?></div><div class="stat-foot">Записей в журнале</div></article><article class="stat-card stat-orange"><div class="stat-top"><span>Лучшая оценка</span><span class="stat-icon">↑</span></div><div class="stat-value"><?= e($summary['max_grade'] ?? '—') ?></div><div class="stat-foot">Максимальный результат</div></article></div>
-<div class="two-column">
-<section class="panel"><div class="panel-heading"><div><h3>Добавить оценку</h3><p>Запиши результат по предмету</p></div></div>
-<form class="stack-form" method="post" action="index.php?route=grade-save"><input type="hidden" name="_token" value="<?= e($_SESSION['_token']) ?>"><label>Предмет<input required name="subject" maxlength="120" placeholder="Например, программирование"></label><div class="form-grid"><label>Оценка<select name="grade"><option>5</option><option>4</option><option>3</option><option>2</option></select></label><label>Вес оценки<input type="number" name="weight" value="1" min="0.1" max="100" step="0.1"></label></div><label>Дата<input type="date" name="exam_date"></label><label>Комментарий<input name="note" placeholder="Необязательно"></label><button class="btn primary">Добавить оценку</button></form></section>
-<section class="panel"><div class="panel-heading"><div><h3>Средний балл по предметам</h3><p>На основе внесённых оценок</p></div></div><div class="chart-wrap"><canvas id="gradeChart" data-labels="<?= e(json_encode(array_column($chart,'subject'), JSON_UNESCAPED_UNICODE)) ?>" data-values="<?= e(json_encode(array_map('floatval',array_column($chart,'average')))) ?>"></canvas></div></section>
+<div class="stats-grid compact-stats">
+<article class="stat-card stat-purple">
+<div class="stat-top">
+<span>Средний балл</span>
+<span class="stat-icon">★</span>
 </div>
-<div class="panel table-panel"><div class="panel-heading"><div><h3>Журнал оценок</h3><p>Все сохранённые результаты</p></div></div>
-<?php if (!$grades): ?><div class="empty-state compact"><strong>Оценок пока нет</strong><p>Добавь первую оценку в форму выше.</p></div><?php else: ?><div class="table-scroll"><table><thead><tr><th>Предмет</th><th>Оценка</th><th>Вес</th><th>Дата</th><th></th></tr></thead><tbody><?php foreach ($grades as $grade): ?><tr><td><strong><?= e($grade['subject']) ?></strong><small class="table-sub"><?= e($grade['note']) ?></small></td><td><span class="grade-badge"><?= (int)$grade['grade'] ?></span></td><td><?= e($grade['weight']) ?></td><td><?= $grade['exam_date'] ? e(date('d.m.Y',strtotime($grade['exam_date']))) : '—' ?></td><td><form method="post" action="index.php?route=grade-delete" onsubmit="return confirm('Удалить оценку?')"><input type="hidden" name="_token" value="<?= e($_SESSION['_token']) ?>"><input type="hidden" name="id" value="<?= (int)$grade['id'] ?>"><button class="icon-action danger-text">×</button></form></td></tr><?php endforeach; ?></tbody></table></div><?php endif; ?>
+<div class="stat-value">
+<?= e($summary['average'] ?? '0') ?>
+</div>
+<div class="stat-foot">Среднее по всем оценкам</div>
+</article>
+<article class="stat-card stat-green">
+<div class="stat-top">
+<span>Всего оценок</span>
+<span class="stat-icon">▤</span>
+</div>
+<div class="stat-value">
+<?= (int)($summary['total'] ?? 0) ?>
+</div>
+<div class="stat-foot">Записей в журнале</div>
+</article>
+<article class="stat-card stat-orange">
+<div class="stat-top">
+<span>Лучшая оценка</span>
+<span class="stat-icon">↑</span>
+</div>
+<div class="stat-value">
+<?= e($summary['max_grade'] ?? '—') ?>
+</div>
+<div class="stat-foot">Максимальный результат</div>
+</article>
+</div>
+<div class="two-column">
+<section class="panel">
+<div class="panel-heading">
+<div>
+<h3>Добавить оценку</h3>
+<p>Запиши результат по предмету</p>
+</div>
+</div>
+<form class="stack-form" method="post" action="index.php?route=grade-save">
+<input type="hidden" name="_token" value="<?= e($_SESSION['_token']) ?>">
+<label>Предмет<input required name="subject" maxlength="120" placeholder="Например, программирование">
+</label>
+<div class="form-grid">
+<label>Оценка<select name="grade">
+<option>5</option>
+<option>4</option>
+<option>3</option>
+<option>2</option>
+</select>
+</label>
+<label>Вес оценки<input type="number" name="weight" value="1" min="0.1" max="100" step="0.1">
+</label>
+</div>
+<label>Дата<input type="date" name="exam_date">
+</label>
+<label>Комментарий<input name="note" placeholder="Необязательно">
+</label>
+<button class="btn primary">Добавить оценку</button>
+</form>
+</section>
+<section class="panel">
+<div class="panel-heading">
+<div>
+<h3>Средний балл по предметам</h3>
+<p>На основе внесённых оценок</p>
+</div>
+</div>
+<div class="chart-wrap">
+<canvas id="gradeChart" data-labels="<?= e(json_encode(array_column($chart,'subject'), JSON_UNESCAPED_UNICODE)) ?>" data-values="<?= e(json_encode(array_map('floatval',array_column($chart,'average')))) ?>">
+</canvas>
+</div>
+</section>
+</div>
+<div class="panel table-panel">
+<div class="panel-heading">
+<div>
+<h3>Журнал оценок</h3>
+<p>Все сохранённые результаты</p>
+</div>
+</div>
+<?php if (!$grades): ?>
+<div class="empty-state compact">
+<strong>Оценок пока нет</strong>
+<p>Добавь первую оценку в форму выше.</p>
+</div>
+<?php else: ?>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>Предмет</th>
+<th>Оценка</th>
+<th>Вес</th>
+<th>Дата</th>
+<th>
+</th>
+</tr>
+</thead>
+<tbody>
+<?php foreach ($grades as $grade): ?>
+<tr>
+<td>
+<strong>
+<?= e($grade['subject']) ?>
+</strong>
+<small class="table-sub">
+<?= e($grade['note']) ?>
+</small>
+</td>
+<td>
+<span class="grade-badge">
+<?= (int)$grade['grade'] ?>
+</span>
+</td>
+<td>
+<?= e($grade['weight']) ?>
+</td>
+<td>
+<?= $grade['exam_date'] ? e(date('d.m.Y',strtotime($grade['exam_date']))) : '—' ?>
+</td>
+<td>
+<form method="post" action="index.php?route=grade-delete" onsubmit="return confirm('Удалить оценку?')">
+<input type="hidden" name="_token" value="<?= e($_SESSION['_token']) ?>">
+<input type="hidden" name="id" value="<?= (int)$grade['id'] ?>">
+<button class="icon-action danger-text">×</button>
+</form>
+</td>
+</tr>
+<?php endforeach; ?>
+</tbody>
+</table>
+</div>
+<?php endif; ?>
 </div>
