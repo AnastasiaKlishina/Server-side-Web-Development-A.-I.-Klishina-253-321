@@ -4,7 +4,6 @@ if (!defined('CONTACT_BOOK')) {
     exit('Доступ запрещён');
 }
 
-
 $dbHost = 'localhost';
 $dbName = 'miavertiko';
 $dbUser = 'miavertiko';

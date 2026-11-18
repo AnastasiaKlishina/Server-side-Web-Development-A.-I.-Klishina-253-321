@@ -4,7 +4,7 @@ if (!defined('CONTACT_BOOK')) {
     exit('Доступ запрещён');
 }
 
-
+/* Функция без параметров возвращает HTML-код главного и дополнительного меню. */
 function get_menu(): string {
     $active = $_GET['page'] ?? 'view';
     if (!in_array($active, ['view', 'add', 'edit', 'delete'], true)) {

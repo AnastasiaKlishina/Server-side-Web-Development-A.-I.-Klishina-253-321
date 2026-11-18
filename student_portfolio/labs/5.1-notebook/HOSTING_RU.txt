@@ -1,0 +1,9 @@
+Лабораторная 5.1 — версия для хостинга
+
+1. Загрузите файлы этой папки в папку лабораторной 5.1 на хостинге.
+2. Откройте config.php и замените ВПИШИТЕ_НОВЫЙ_ПАРОЛЬ_БАЗЫ на пароль пользователя БД miavertiko.
+3. База данных: miavertiko. Пользователь: miavertiko. Таблица: lab_notebook_contacts.
+4. Не импортируйте schema.sql на хостинге: он создаёт отдельную БД contact_book и таблицу contacts.
+5. Существующая таблица lab_notebook_contacts уже содержит нужные поля: id, surname, name, patronymic, gender, birth_date, phone, address, email, comment, created_at.
+
+Пароль не хранится в этом архиве.

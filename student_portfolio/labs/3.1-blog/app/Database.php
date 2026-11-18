@@ -5,10 +5,12 @@ final class Database
 {
     public static function connect(): PDO
     {
+
         $host = 'localhost';
         $db = 'miavertiko';
         $user = 'miavertiko';
         $pass = 'MAiXGV8NB1*3HB31';
+
         return new PDO(
             "mysql:host={$host};dbname={$db};charset=utf8mb4",
             $user,

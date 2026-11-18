@@ -4,7 +4,7 @@ if (!defined('CONTACT_BOOK')) {
     exit('Доступ запрещён');
 }
 
-
+/* Возвращает таблицу контактов и пагинацию. */
 function render_contacts(string $sort, int $page): string {
     global $pdo;
     $sortColumns = [
